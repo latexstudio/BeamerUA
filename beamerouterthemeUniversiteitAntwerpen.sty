@@ -1,0 +1,235 @@
+% beamerouterthemeUniversiteitAntwerpen.sty
+%
+% Copyright 2014 Roeland Juchtmans
+% Copyright 2015 Ruben Van Boxem
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is R. Van Boxem
+%
+
+% UA page geometry
+% \geometry{paperheight=7.5in,paperwidth=10.0in}
+% ... Hang on! As suggested in the manual, don't mess around with beamer's
+% assumed page dimensions (128mm x 96mm). Fonts, for example, do no get 
+% automatically scaled and will look tiny if the above is executed.
+% Instead, define a multiplier 12.8/(10.0*2.54) = 64/127 and adjust all
+% respective lengths.
+
+\RequirePackage{calc}
+\RequirePackage{ifthen}
+\RequirePackage{etoolbox}
+%\beamertemplatenavigationsymbolsempty % remove navigation bar from title slide
+
+\mode<presentation>
+
+% LENGTHS
+\newlength{\margin}
+\setlength{\margin}{0.8832cm}% 0.69in* 64/127 *2.54cm/in
+
+\newlength{\LogoHeight}
+\setlength{\LogoHeight}{.8cm}
+\newlength{\SmallLogoHeight}
+\setlength{\SmallLogoHeight}{.5cm}
+\newlength{\SmallFunderLogoHeight}
+\setlength{\SmallFunderLogoHeight}{.33cm}
+\newlength{\LogoMargin}
+\setlength{\LogoMargin}{.58cm}
+\newlength{\LogoBottomMargin}
+\setlength{\LogoBottomMargin}{.31cm}
+\newlength{\LogoRightMargin}
+\setlength{\LogoRightMargin}{\paperwidth-\LogoMargin}
+
+\newlength{\FootnoteMargin}
+\setlength{\FootnoteMargin}{1cm}
+\newif\ifWideGroupLogo % true if logo contains two squares
+
+\newif\ifnotincontentsframe
+\notincontentsframetrue
+
+%% IMAGES
+\pgfdeclareimage[width=\paperwidth]{FrontSlideBackground}{Images/UAFrontSlideBackground}
+\pgfdeclareimage[width=\paperwidth]{SmallWave}{Images/UASmallWave}
+
+\pgfdeclareimage[width=\paperwidth]{LargeWave}{Images/UAScienceLargeWave}
+
+% check logo settings
+\newif\ifGroupLogoSet
+\GroupLogoSetfalse
+\def\GroupLogoSetError{You can choose only one research group option.}
+
+\newif\ifFunderLogoSet
+\FunderLogoSetfalse
+\def\FunderLogoSetError{You can choose only one funder logo option.}
+
+\ifbeamer@EMAT
+ \ifGroupLogoSet
+  \errmessage\GroupLogoSetError
+ \else
+  \pgfdeclareimage[height=\LogoHeight]{TextLogoGroup}{Images/TextLogoEMAT}
+  \pgfdeclareimage[height=\SmallLogoHeight]{LogoGroup}{Images/LogoEMAT}
+  \WideGroupLogotrue
+  \GroupLogoSettrue
+ \fi
+\fi
+\ifbeamer@CMT
+ \ifGroupLogoSet
+  \errmessage\GroupLogoSetError
+ \else
+  \pgfdeclareimage[height=\LogoHeight]{TextLogoGroup}{Images/TextLogoEMAT}
+  \pgfdeclareimage[height=\SmallLogoHeight]{LogoGroup}{Images/LogoEMAT}
+  \GroupLogoSettrue
+ \fi
+\fi
+\ifbeamer@PPG
+ \ifGroupLogoSet
+  \errmessage\LogoSetError
+ \else
+  \pgfdeclareimage[height=\LogoHeight]{TextLogoGroup}{Images/TextLogoEMAT}
+  \pgfdeclareimage[height=\SmallLogoHeight]{LogoGroup}{Images/LogoEMAT}
+  \GroupLogoSettrue
+ \fi
+\fi
+
+% default to plain UA
+\ifGroupLogoSet
+ %do nothing
+\else
+ \pgfdeclareimage[height=\LogoHeight]{TextLogoGroup}{Images/TextLogoUA}
+ \pgfdeclareimage[height=\SmallLogoHeight]{LogoGroup}{Images/LogoUA}
+ \GroupLogoSettrue
+\fi
+
+\ifbeamer@FWO%
+ \ifFunderLogoSet
+  \errmessage\FunderLogoSetError
+ \else
+  \pgfdeclareimage[height=\LogoHeight]{FunderLogoLarge}{Images/TextLogoFWO}
+  \pgfdeclareimage[height=\SmallFunderLogoHeight]{FunderLogo}{Images/LogoFWO}
+  \FunderLogoSettrue
+ \fi
+\fi
+
+%% CONTENTS PAGES
+\ifbeamer@contents
+\AtBeginSection[]
+{
+ \notincontentsframefalse
+ \begin{frame}{Contents}
+  \begin{scriptsize}
+   \tableofcontents[currentsection,subsectionstyle=show/shaded]
+  \end{scriptsize}
+ \end{frame}
+ \notincontentsframetrue
+}
+\fi
+
+% NAVIGATION SYMBOLS
+\setbeamertemplate{navigation symbols}{}
+
+% HEADLINE
+\defbeamertemplate*{headline}{ua theme}
+{
+ \ifnum\insertframenumber>1
+  \begin{tikzpicture}
+   \useasboundingbox[fill=white](0,0) rectangle(\the\paperwidth,0.6);
+   \fill[facultycolor] (-.25\paperwidth,5.95\paperwidth) circle (6\paperwidth);
+   \ifnotincontentsframe
+    \node[anchor=west, white, align=left] at (0.3,.1) {\small{\insertsectionhead} \\[.25\baselineskip] {\scriptsize\insertsubsectionhead}};
+   \fi
+   \ifbeamer@navigation
+    \node[anchor=east, align=left] at (10,.1) {\LARGE \insertslidenavigationsymbol};
+   \fi
+  \end{tikzpicture}
+ \fi
+ %TODO Don't \vskip if the title is too long!
+ \vskip35pt %TODO unhardcode?
+ \hskip\margin
+}
+
+% FRAMETITLE
+\defbeamertemplate*{frametitle}{ua theme}
+{
+ \insertframetitle
+}
+
+% FOOTLINE
+\defbeamertemplate*{footline}{ua theme}
+{
+ % title slide
+ \ifthenelse{\c@framenumber=1}
+ {
+  \pgftext[left,bottom,at=\pgfpoint{0}{0}]{\pgfuseimage{LargeWave}}
+  \pgftext[left,bottom,at=\pgfpoint{\LogoMargin}{\LogoBottomMargin}]{\pgfuseimage{TextLogoGroup}}
+  \ifFunderLogoSet
+    \pgftext[right,bottom,at=\pgfpoint{\LogoRightMargin}{\LogoBottomMargin}]{\pgfuseimage{FunderLogoLarge}}
+  \fi
+ }
+ % rest of the slides
+ {
+  \vskip20pt   % fix footnote position
+  \vspace{0pt} % idem
+  \pgftext[left,bottom,at=\pgfpoint{0}{0}]{\pgfuseimage{SmallWave}}
+  \ifFunderLogoSet
+   \pgftext[left,bottom,at=\pgfpoint{\LogoRightMargin-1.7cm}{\LogoBottomMargin-.1cm}]{\pgfuseimage{FunderLogo}}
+  \fi
+  \pgftext[left,bottom,at=\pgfpoint{\LogoRightMargin-.75cm}{\LogoBottomMargin-.1cm}]{\pgfuseimage{LogoGroup}}
+  % page number
+  \ifbeamer@framenumber%
+   \ifbeamer@totalframenumber%
+    \pgftext[right,top,at=\pgfpoint{.05\paperwidth}{0.02\paperwidth}]{\usebeamerfont{frame number in foot}\usebeamercolor[fg]{frame number in foot}\insertframenumber{}/\inserttotalframenumber}
+   \else
+    \pgftext[right,top,at=\pgfpoint{.03\paperwidth}{0.02\paperwidth}]{\usebeamerfont{frame number in foot}\usebeamercolor[fg]{frame number in foot}\insertframenumber{}}
+   \fi
+  \fi
+ }
+}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+% ----------------------------------------------------------------------------
+% *** END of FOOTLINE >>>
+% ---------------------------------------------------------------------------- 
+
+
+% ----------------------------------------------------------------------------
+% *** MARGINS <<<
+% ----------------------------------------------------------------------------
+% set left and right text margins
+\setbeamersize{text margin left=\margin,%
+               text margin right=\margin}
+% ----------------------------------------------------------------------------
+% *** END MARGINS >>>
+% ----------------------------------------------------------------------------
+
+
+
+% ----------------------------------------------------------------------------
+% *** BACKGROUND <<<
+% ----------------------------------------------------------------------------
+%\defbeamertemplate*{background canvas}{ua theme}
+%{%
+%\ifbeamer@frontslide
+%  \ifthenelse{ \c@framenumber=1}
+%  % *** THEN ***
+%  {%
+%      \pgfuseimage{FrontSlideBackground}
+%  }
+%  % *** ELSE ***
+%  {}
+%\fi
+%}
+% ----------------------------------------------------------------------------
+% *** END BACKGROUND <<<
+% ----------------------------------------------------------------------------
+
+\mode
+<all>
