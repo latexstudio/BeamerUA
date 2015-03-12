@@ -1,0 +1,61 @@
+\documentclass{beamer}
+\usetheme[framenumber,contents,totalframenumber,FWO]{UniversiteitAntwerpen}
+
+\title{Example BeamerUA presentation}
+\author{Ruben Van Boxem}
+\institute{Universiteit Antwerpen}
+
+\date{\today}
+
+\begin{document}
+
+% Use this to set a custom background
+{
+ \usebackgroundtemplate{
+ \vbox to \paperheight{\vfil\hbox to \paperwidth{ \hfil
+ \includegraphics[width=1.2\framewidth]{Images/UAFrontSlideBackground} \hfil} \vfil}
+}
+% title slide
+\begin{frame}
+ % \maketitle comes out poorly with the University of Antwerp first slide background image
+ \centering
+ \textcolor{uared}{Example BeamerUA presentation}
+
+ \textcolor{white}{Ruben Van Boxem}
+
+ \textcolor{white}{\today}
+\end{frame}
+}
+
+\section{Introduction}
+\subsection{Introducing the Introduction}
+
+\begin{frame}{Well-thought-out frame title}
+Put your text and other stuffs here.
+\end{frame}
+\subsection{The Real Introduction}
+\begin{frame}{Not so well-thought-out frame title}
+ \begin{block}{Oh look a block!}
+  Stuff in a block.
+ \end{block}
+\end{frame}
+
+\section{You've probably lost half the audience by now}
+\subsection{Note the practical section name length limit}
+
+\begin{frame}{Second section, time to wake up your audience!}
+ Did you notice the added contents slide?
+
+ I included it to keep track of whatever it is I want to talk about!
+\end{frame}
+
+% You can turn off the contents slide for the last slide/section
+\AtBeginSection[]{}% Turn off table of contents for last slide
+
+\section{The end} % or empty, if you don't want a section title displayed on these slides
+
+\begin{frame}{Thanks for your attention! Any questions?}
+ Hope you slept comfortably!
+\end{frame}
+
+\end{document}

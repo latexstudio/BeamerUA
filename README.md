@@ -14,6 +14,7 @@ The files are provided such that placing your tex file alongside the `beamer*the
 
     \usetheme{UniversiteitAntwerpen}
 
+The packages `calc`, `etoolbox`, `ifthen`, and `tikz` are required.
 There are various options provided, which can be passed as optional arguments, e.g.
 
     \usetheme[framenumber,FWO,EMAT,contents]{UniversiteitAntwerpen}
