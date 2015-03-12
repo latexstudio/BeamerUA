@@ -29,9 +29,9 @@ The options currently are:
   * Funder logos: currently only an `FWO` logo is available.
   * Group logos: currently only `EMAT`, `CMT`, and `PPG` logos are available. If none is selected, the University logo is shown instead. Using more than one group logo will currently only use the last one in the list in `beamerthemeUniversiteitAntwerpen.sty`.
 
-Logo's can be added as they are currently handled in beamer[outer]themeUniversiteitAntwerpen.sty.
+Logos can be added as they are currently handled in beamer[outer]themeUniversiteitAntwerpen.sty.
 University logos and templates can be accessed by following these instructions:
-* Access \\fileserver.ad.ua.ac.be and log in using `AD\` followed by your university login, and your university password.
+* Access `\\fileserver.ad.ua.ac.be` and log in using `AD\` followed by your university login, and your university password.
 * Navigate to `Data/Logo's & templates` and then to the faculty and group subfolder which should contain the files you need.
 * Convert and rename them following the currently employed convention in the `Images` subfolder (`svg`s aren't strictly required, but nice to have nonetheless).
 * Prosper.
