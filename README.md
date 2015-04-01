@@ -7,6 +7,7 @@ It contains artwork extracted from the University provided templates, converted 
 The FWO logo was downloaded from http://www.fwo.be/en/the-fwo/organisation/logo-and-corporate-identity/.
 The files are provided as is, under the LaTeX Project Public License (LICENSE).
 The logo files are copyright their respective owners, and only provided as a convenience.
+The `UAntwerpen_colors.png` and `UAntwerpen_faculty_colors.png` files are property of the University of Antwerp.
 
 ## Usage
 
