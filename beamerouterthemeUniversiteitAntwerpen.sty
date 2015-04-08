@@ -179,10 +179,18 @@
   \vskip20pt   % fix footnote position
   \vspace{0pt} % idem
   \pgftext[left,bottom,at=\pgfpoint{0}{0}]{\pgfuseimage{SmallWave}}
-  \ifFunderLogoSet
-   \pgftext[left,bottom,at=\pgfpoint{\LogoRightMargin-1.7cm}{\LogoBottomMargin-.1cm}]{\pgfuseimage{FunderLogo}}
+  \ifWideGroupLogo
+   \pgftext[left,bottom,at=\pgfpoint{\LogoRightMargin-.75cm}{\LogoBottomMargin-.1cm}]{\pgfuseimage{LogoGroup}}
+   \ifFunderLogoSet
+    \pgftext[left,bottom,at=\pgfpoint{\LogoRightMargin-1.7cm}{\LogoBottomMargin-.1cm}]{\pgfuseimage{FunderLogo}}
+   \fi
+  \else
+   \pgftext[left,bottom,at=\pgfpoint{\LogoRightMargin-.25cm}{\LogoBottomMargin-.1cm}]{\pgfuseimage{LogoGroup}}
+   \ifFunderLogoSet
+    \pgftext[left,bottom,at=\pgfpoint{\LogoRightMargin-1.2cm}{\LogoBottomMargin-.1cm}]{\pgfuseimage{FunderLogo}}
+   \fi
   \fi
-  \pgftext[left,bottom,at=\pgfpoint{\LogoRightMargin-.75cm}{\LogoBottomMargin-.1cm}]{\pgfuseimage{LogoGroup}}
+  
   % page number
   \ifbeamer@framenumber%
    \ifbeamer@totalframenumber%
