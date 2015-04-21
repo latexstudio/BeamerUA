@@ -59,7 +59,6 @@
 %% IMAGES
 \pgfdeclareimage[width=\paperwidth]{FrontSlideBackground}{Images/UAFrontSlideBackground}
 \pgfdeclareimage[width=\paperwidth]{SmallWave}{Images/UASmallWave}
-
 \pgfdeclareimage[width=\paperwidth]{LargeWave}{Images/UAScienceLargeWave}
 
 % check logo settings
@@ -73,7 +72,7 @@
 
 \ifbeamer@EMAT
  \ifGroupLogoSet
-  \errmessage\GroupLogoSetError
+  \errmessage{\GroupLogoSetError}
  \else
   \pgfdeclareimage[height=\LogoHeight]{TextLogoGroup}{Images/TextLogoEMAT}
   \pgfdeclareimage[height=\SmallLogoHeight]{LogoGroup}{Images/LogoEMAT}
@@ -83,7 +82,7 @@
 \fi
 \ifbeamer@CMT
  \ifGroupLogoSet
-  \errmessage\GroupLogoSetError
+  \errmessage{\GroupLogoSetError}
  \else
   \pgfdeclareimage[height=\LogoHeight]{TextLogoGroup}{Images/TextLogoCMT}
   \pgfdeclareimage[height=\SmallLogoHeight]{LogoGroup}{Images/LogoUA}
@@ -92,7 +91,7 @@
 \fi
 \ifbeamer@PPG
  \ifGroupLogoSet
-  \errmessage\LogoSetError
+  \errmessage{\GroupLogoSetError}
  \else
   \pgfdeclareimage[height=\LogoHeight]{TextLogoGroup}{Images/TextLogoPPG}
   \pgfdeclareimage[height=\SmallLogoHeight]{LogoGroup}{Images/LogoUA}
@@ -104,14 +103,18 @@
 \ifGroupLogoSet
  %do nothing
 \else
- \pgfdeclareimage[height=\LogoHeight]{TextLogoGroup}{Images/TextLogoUA}
+ \ifbeamer@NL
+  \pgfdeclareimage[height=\LogoHeight]{TextLogoGroup}{Images/TextLogoUA_NL}
+ \else
+  \pgfdeclareimage[height=\LogoHeight]{TextLogoGroup}{Images/TextLogoUA}
+ \fi
  \pgfdeclareimage[height=\SmallLogoHeight]{LogoGroup}{Images/LogoUA}
  \GroupLogoSettrue
 \fi
 
 \ifbeamer@FWO%
  \ifFunderLogoSet
-  \errmessage\FunderLogoSetError
+  \errmessage{\FunderLogoSetError}
  \else
   \pgfdeclareimage[height=\LogoHeight]{FunderLogoLarge}{Images/TextLogoFWO}
   \pgfdeclareimage[height=\SmallFunderLogoHeight]{FunderLogo}{Images/LogoFWO}

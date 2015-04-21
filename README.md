@@ -28,7 +28,7 @@ The options currently are:
 * `navigation`: show beamer navigation bar (currently non-functional)
 * Logo options: there are funder logos and group logos. One group logo can be combined with a funder logo. These are shown in full on the first slide, and small versions in the lower right corner of each slide.
   * Funder logos: currently only an `FWO` logo is available.
-  * Group logos: currently only `EMAT`, `CMT`, and `PPG` logos are available. If none is selected, the University logo is shown instead. Using more than one group logo will currently only use the last one in the list in `beamerthemeUniversiteitAntwerpen.sty`.
+  * Group logos: currently only `EMAT`, `CMT`, and `PPG` logos are available. Using more than one group logo option will result in an error saying as much. If none is selected, the University logo is shown instead. The Dutch version of the logo text on the title page can be selected with the `NL` option (which has no effect otherwise). Without this option, the English version will be used. 
 
 Logos can be added as they are currently handled in beamer[outer]themeUniversiteitAntwerpen.sty.
 University logos and templates can be accessed by following these instructions:
