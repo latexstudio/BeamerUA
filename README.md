@@ -2,7 +2,10 @@
 
 ## General info
 
-This is a beamer theme following the University of Antwerp style.
+This is a beamer theme following the University of Antwerp style, available from
+
+    www.github.com/rubenvb/BeamerUA
+
 It contains artwork extracted from the University provided templates, converted to the proper filetypes.
 The FWO logo was downloaded from http://www.fwo.be/en/the-fwo/organisation/logo-and-corporate-identity/.
 The files are provided as is, under the LaTeX Project Public License (LICENSE).
@@ -37,4 +40,4 @@ University logos and templates can be accessed by following these instructions:
 * Convert and rename them following the currently employed convention in the `Images` subfolder (`svg`s aren't strictly required, but nice to have nonetheless).
 * Prosper.
 
-If you need the IWT logo or want me to add another group's logo myself because the above instructions are Chinese to you, feel free to open an issue here or email me for help.
+If you want me to add another group's logo myself because the above instructions are Chinese to you, feel free to open an issue on github or email me for help.
